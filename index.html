@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN XITERS - Happy Cheating and Enjoy 🤭🤙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #0a0a16;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Background animasi */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 60%, rgba(120, 219, 255, 0.1) 0%, transparent 20%);
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(0, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .particle:nth-child(2n) {
+            background-color: rgba(255, 50, 150, 0.6);
+            animation-duration: 20s;
+        }
+        
+        .particle:nth-child(3n) {
+            background-color: rgba(100, 220, 255, 0.6);
+            animation-duration: 25s;
+        }
+        
+        .grid-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100vw * var(--x)), calc(100vh * var(--y))) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(40px, 40px);
+            }
+        }
+        
+        /* Container utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0ff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #ff66cc;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid #ff66cc;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 102, 204, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 102, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 102, 204, 0); }
+        }
+        
+        /* Kategori produk */
+        .category {
+            margin-bottom: 40px;
+            background-color: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+        }
+        
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00ffff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Grid produk */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Item produk */
+        .product-item {
+            background: linear-gradient(145deg, rgba(20, 25, 50, 0.8), rgba(10, 15, 35, 0.9));
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-8px);
+            border-color: #ff00ff;
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3);
+        }
+        
+        .product-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s;
+        }
+        
+        .product-item:hover::before {
+            left: 100%;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-price {
+            color: #ffcc00;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+        }
+        
+        .product-desc {
+            color: #a0a0ff;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        
+        .whatsapp-indicator {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        /* Tombol WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #a0a0ff;
+            font-size: 0.9rem;
+        }
+        
+        .footer-highlight {
+            color: #ff66cc;
+            font-weight: 700;
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .category {
+                padding: 20px;
+            }
+            
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animasi -->
+    <div class="background-animation">
+        <div class="particles" id="particles-container"></div>
+        <div class="grid-lines"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-glow"></div>
+            <h1>PAN XITERS</h1>
+            <div class="subtitle">PRODUCTS STORE - GAMING CHEATS</div>
+            <div class="tagline">HAPPY CHEATING AND ENJOY 🤭🤙</div>
+        </header>
+        
+        <!-- Kategori: FILE ANDROID -->
+        <section class="category">
+            <h2 class="category-title"><i class="fas fa-mobile-alt"></i> FILE ANDROID 📱</h2>
+            <div class="products-grid">
+                <!-- Produk akan diisi oleh JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Kategori: XIT ADNRO -->
+        <section class="category">
+            <h2 class="category-title"><i class="fas fa-bolt"></i> XIT ADNRO 📱</h2>
+            <div class="products-grid">
+                <!-- Produk akan diisi oleh JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Kategori: LIST BETA FXS HS ANDRO/IP -->
+        <section class="category">
+            <h2 class="category-title"><i class="fas fa-flask"></i> LIST BETA FXS HS ANDRO/IP 📱</h2>
+            <div class="products-grid">
+                <!-- Produk akan diisi oleh JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Kategori: FF MOD ANDROID & EMULATOR -->
+        <section class="category">
+            <h2 class="category-title"><i class="fas fa-gamepad"></i> FF MOD ANDROID & EMULATOR 📱</h2>
+            <div class="products-grid">
+                <!-- Produk akan diisi oleh JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Kategori: FILE I-PHONE -->
+        <section class="category">
+            <h2 class="category-title"><i class="fab fa-apple"></i> FILE I-PHONE 📱</h2>
+            <div class="products-grid">
+                <!-- Produk akan diisi oleh JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p>Klik produk untuk memesan via WhatsApp ke admin: <span class="footer-highlight">085882337743</span></p>
+            <p>PAN XITERS © 2023 - Happy Cheating and Enjoy! 🤭🤙</p>
+        </footer>
+    </div>
+    
+    <!-- Tombol WhatsApp -->
+    <a href="https://wa.me/6285882337743?text=Halo%20admin%20PAN%20XITERS,%20saya%20ingin%20bertanya%20tentang%20produk%20kamu" 
+       target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script>
+        // Data produk
+        const products = {
+            "android": [
+                { name: "File Aimlock Hs 40%", price: "10k", desc: "Aimlock dengan akurasi 40%" },
+                { name: "File Aimlock Hs 65%", price: "15k", desc: "Aimlock dengan akurasi 65%" },
+                { name: "File Aimlock Hs 80%", price: "25k", desc: "Aimlock dengan akurasi 80%" },
+                { name: "File Aimlock Hs 100%", price: "50k", desc: "Aimlock dengan akurasi maksimal 100%" },
+                { name: "Hologram", price: "25k", desc: "Efek hologram dalam game" },
+                { name: "Magic Bullet", price: "50k", desc: "Peluru ajaib tembus tembok" },
+                { name: "Cheat Headshot", price: "90k", desc: "Cheat headshot otomatis" },
+                { name: "Badan Headshot", price: "120k", desc: "Headshot seluruh badan musuh" }
+            ],
+            "xit": [
+                { name: "XIT DRAG HS ZIEXTERA", price: "50K", desc: "Drag headshot dengan teknologi Ziextera" },
+                { name: "XIT DRAG ALL TAP", price: "100K", desc: "Drag all tap untuk kontrol penuh" }
+            ],
+            "beta": [
+                { name: "BETA - FXS", price: "20K", desc: "Versi beta FXS dengan fitur dasar" },
+                { name: "START - FXS", price: "30K", desc: "FXS versi start untuk pemula" },
+                { name: "CORE - FXS", price: "50K", desc: "FXS core dengan fitur lengkap" },
+                { name: "VOID - FXS", price: "~150K~100K", desc: "FXS void dengan diskon spesial" }
+            ],
+            "ff": [
+                { name: "FF EASY DRAG", price: "35K", desc: "Drag mudah untuk Free Fire" },
+                { name: "FF V7A EMULATOR", price: "30K", desc: "Kompatibel dengan emulator V7A" },
+                { name: "FF V7A+V8A STABIL", price: "40K", desc: "Stabil untuk V7A dan V8A" },
+                { name: "FF AIMLOCK HS", price: "60K", desc: "Aimlock headshot untuk Free Fire" }
+            ],
+            "iphone": [
+                { name: "Easy Drag", price: "30k", desc: "Drag mudah untuk iPhone" },
+                { name: "Hologram", price: "50k", desc: "Efek hologram untuk iPhone" },
+                { name: "Magic Bullet", price: "60k", desc: "Peluru ajaib untuk iPhone" }
+            ]
+        };
+        
+        // Fungsi untuk membuat partikel background
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posisi acak
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Variabel CSS untuk animasi
+                particle.style.setProperty('--x', Math.random());
+                particle.style.setProperty('--y', Math.random());
+                
+                // Ukuran acak
+                const size = Math.random() * 3 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Delay animasi acak
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Fungsi untuk membuat elemen produk
+        function createProductElement(product, category) {
+            const productElement = document.createElement('div');
+            productElement.className = 'product-item';
+            
+            // Encode pesan untuk WhatsApp
+            const message = `Halo admin PAN XITERS, saya ingin membeli produk: ${product.name} seharga ${product.price}.`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/6285882337743?text=${encodedMessage}`;
+            
+            // Atribut untuk WhatsApp
+            productElement.setAttribute('data-whatsapp', whatsappUrl);
+            
+            // Konten produk
+            productElement.innerHTML = `
+                <div class="product-name">
+                    <span>${product.name}</span>
+                    <span class="product-price">${product.price}</span>
+                </div>
+                <div class="product-desc">${product.desc}</div>
+                <div class="whatsapp-indicator">
+                    <i class="fab fa-whatsapp"></i> Klik untuk pesan via WhatsApp
+                </div>
+            `;
+            
+            // Event listener untuk mengarahkan ke WhatsApp
+            productElement.addEventListener('click', function() {
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            return productElement;
+        }
+        
+        // Fungsi untuk memuat produk ke dalam halaman
+        function loadProducts() {
+            // Android products
+            const androidContainer = document.querySelectorAll('.products-grid')[0];
+            products.android.forEach(product => {
+                androidContainer.appendChild(createProductElement(product, 'android'));
+            });
+            
+            // XIT products
+            const xitContainer = document.querySelectorAll('.products-grid')[1];
+            products.xit.forEach(product => {
+                xitContainer.appendChild(createProductElement(product, 'xit'));
+            });
+            
+            // Beta products
+            const betaContainer = document.querySelectorAll('.products-grid')[2];
+            products.beta.forEach(product => {
+                betaContainer.appendChild(createProductElement(product, 'beta'));
+            });
+            
+            // FF products
+            const ffContainer = document.querySelectorAll('.products-grid')[3];
+            products.ff.forEach(product => {
+                ffContainer.appendChild(createProductElement(product, 'ff'));
+            });
+            
+            // iPhone products
+            const iphoneContainer = document.querySelectorAll('.products-grid')[4];
+            products.iphone.forEach(product => {
+                iphoneContainer.appendChild(createProductElement(product, 'iphone'));
+            });
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            loadProducts();
+            
+            // Efek hover untuk semua item produk
+            const productItems = document.querySelectorAll('.product-item');
+            productItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Animasi untuk kategori
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                category.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                category.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
